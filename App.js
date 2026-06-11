@@ -9,7 +9,7 @@ export default function App() {
   const [enviando, setEnviando] = useState(false);
 
   // --- Funções de Requisição e Efeitos (Os alunos implementarão aqui) ---
-  
+
   // Função de cadastrar
   const cadastrarMaterial = () => {
     console.log('Cadastrar');
@@ -101,5 +101,18 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     fontSize: 14,
   },
- 
+  button: {
+    backgroundColor: '#2802b1',
+    borderRadius: 6,
+    paddingVertical: 12,
+    alignItems: 'center',
+  },
+  buttonDisabled: {
+    backgroundColor: '#99c2e8',
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: '600',
+    fontSize: 14,
+  },
 });
