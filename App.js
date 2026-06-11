@@ -4,20 +4,42 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, Activity
 export default function App() {
   // --- Estados da Aplicação (Os alunos implementarão aqui) ---
 
+  const [nome, setNome] = useState('');
+  const [quantidade, setQuantidade] = useState('');
+
   // --- Funções de Requisição e Efeitos (Os alunos implementarão aqui) ---
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Almoxarifado - Enfermagem</Text>
-      
+
       {/* Breve descrição do projeto inserida abaixo */}
       <Text style={styles.description}>
-        Este template servirá para desenvolver o projeto responsável por modernizar o controle de insumos médicos do almoxarifado. 
+        Este template servirá para desenvolver o projeto responsável por modernizar o controle de insumos médicos do almoxarifado.
         Através desta interface conectada à API, é possível realizar o inventário em tempo real, cadastrar novos materiais e registrar baixas de estoque de forma ágil e segura.
       </Text>
 
       {/* Os alunos vão construir os componentes visuais das Sprints aqui dentro */}
-      
+      <View style={styles.form}>
+        <Text style={styles.label}>Nome do Material</Text>
+        <TextInput
+          testID="input-nome"
+          style={styles.input}  //Chama a estilização do input 
+          placeholder="Ex: Seringa"
+          value={nome}
+          onChangeText={setNome}
+        />
+
+        <Text style={styles.label}>Quantidade</Text>
+        <TextInput
+          testID="input-quantidade"
+          style={styles.input}
+          placeholder="Ex: 100"
+          onChangeText={setQuantidade}
+          value={quantidade}
+          keyboardType="numeric"
+        />
+      </View>
     </View>
   );
 }
@@ -42,5 +64,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 20, // Dá um espaçamento confortável entre as linhas do parágrafo
     marginBottom: 30, // Margem inferior para afastar o texto dos futuros inputs dos alunos
-  }
+  },
+  
 });
