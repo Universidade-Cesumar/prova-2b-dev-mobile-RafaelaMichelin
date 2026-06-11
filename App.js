@@ -6,8 +6,14 @@ export default function App() {
 
   const [nome, setNome] = useState('');
   const [quantidade, setQuantidade] = useState('');
+  const [enviando, setEnviando] = useState(false);
 
   // --- Funções de Requisição e Efeitos (Os alunos implementarão aqui) ---
+  
+  // Função de cadastrar
+  const cadastrarMaterial = () => {
+    console.log('Cadastrar');
+  };
 
   return (
     <View style={styles.container}>
@@ -39,6 +45,18 @@ export default function App() {
           value={quantidade}
           keyboardType="numeric"
         />
+
+        <TouchableOpacity
+          testID="btn-cadastrar"
+          style={[styles.button, enviando && styles.buttonDisabled]}
+          onPress={cadastrarMaterial}
+          disabled={enviando}
+        >
+          <Text style={styles.buttonText}>
+            {/* Estado do botão */}
+            {enviando ? 'Cadastrando...' : 'Cadastrar'} 
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -83,4 +101,5 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     fontSize: 14,
   },
+ 
 });
