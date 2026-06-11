@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
+import Formulario from './componentes/Formulario';
 
 export default function App() {
   // --- Estados da Aplicação (Os alunos implementarão aqui) ---
 
   const [nome, setNome] = useState('');
   const [quantidade, setQuantidade] = useState('');
+   const [materiais, setMateriais] = useState([]);
   const [enviando, setEnviando] = useState(false);
 
   // --- Funções de Requisição e Efeitos (Os alunos implementarão aqui) ---
@@ -26,40 +28,18 @@ export default function App() {
       </Text>
 
       {/* Os alunos vão construir os componentes visuais das Sprints aqui dentro */}
-      <View style={styles.form}>
-        <Text style={styles.label}>Nome do Material</Text>
-        <TextInput
-          testID="input-nome"
-          style={styles.input}  //Chama a estilização do input 
-          placeholder="Ex: Seringa"
-          value={nome}
-          onChangeText={setNome}
-        />
+   
+    <Formulario
+        nome={nome}
+        setNome={setNome}
+        quantidade={quantidade}
+        setQuantidade={setQuantidade}
+        onCadastrar={cadastrarMaterial}
+        enviando={enviando}
+      />
 
-        <Text style={styles.label}>Quantidade</Text>
-        <TextInput
-          testID="input-quantidade"
-          style={styles.input}
-          placeholder="Ex: 100"
-          onChangeText={setQuantidade}
-          value={quantidade}
-          keyboardType="numeric"
-        />
-
-        <TouchableOpacity
-          testID="btn-cadastrar"
-          style={[styles.button, enviando && styles.buttonDisabled]}
-          onPress={cadastrarMaterial}
-          disabled={enviando}
-        >
-          <Text style={styles.buttonText}>
-            {/* Estado do botão */}
-            {enviando ? 'Cadastrando...' : 'Cadastrar'} 
-          </Text>
-        </TouchableOpacity>
       </View>
-    </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -83,36 +63,5 @@ const styles = StyleSheet.create({
     lineHeight: 20, // Dá um espaçamento confortável entre as linhas do parágrafo
     marginBottom: 30, // Margem inferior para afastar o texto dos futuros inputs dos alunos
   },
-  form: {
-    marginBottom: 20,
-  },
-  label: {
-    fontSize: 13,
-    fontWeight: '600',
-    marginBottom: 4,
-    color: '#474747',
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 6,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    marginBottom: 12,
-    fontSize: 14,
-  },
-  button: {
-    backgroundColor: '#2802b1',
-    borderRadius: 6,
-    paddingVertical: 12,
-    alignItems: 'center',
-  },
-  buttonDisabled: {
-    backgroundColor: '#99c2e8',
-  },
-  buttonText: {
-    color: '#fff',
-    fontWeight: '600',
-    fontSize: 14,
-  },
+
 });
