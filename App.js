@@ -71,6 +71,7 @@ export default function App() {
         enviando={enviando}
       />
 
+       <Text style={styles.subtitle}>Estoque de Materiais</Text>
       <ListaMateriais materiais={materiais} />
     </View>
   )
@@ -97,5 +98,9 @@ const styles = StyleSheet.create({
     lineHeight: 20, // Dá um espaçamento confortável entre as linhas do parágrafo
     marginBottom: 30, // Margem inferior para afastar o texto dos futuros inputs dos alunos
   },
-
+   subtitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginBottom: 8,
+  },
 });
