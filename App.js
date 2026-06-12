@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
 import Formulario from './componentes/Formulario';
+import ListaMateriais from './componentes/ListaMateriais';
 
 export default function App() {
   // --- Estados da Aplicação (Os alunos implementarão aqui) ---
 
   const [nome, setNome] = useState('');
   const [quantidade, setQuantidade] = useState('');
-   const [materiais, setMateriais] = useState([]);
+  const [materiais, setMateriais] = useState([]);
   const [enviando, setEnviando] = useState(false);
+
 
   // --- Funções de Requisição e Efeitos (Os alunos implementarão aqui) ---
 
@@ -28,8 +30,8 @@ export default function App() {
       </Text>
 
       {/* Os alunos vão construir os componentes visuais das Sprints aqui dentro */}
-   
-    <Formulario
+
+      <Formulario
         nome={nome}
         setNome={setNome}
         quantidade={quantidade}
@@ -38,7 +40,8 @@ export default function App() {
         enviando={enviando}
       />
 
-      </View>
+      <ListaMateriais materiais={materiais} />
+    </View>
   )
 }
 
