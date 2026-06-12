@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, ActivityIndicator, Alert } from 'react-native';
 import Formulario from './componentes/Formulario';
 import ListaMateriais from './componentes/ListaMateriais';
+import { getMateriais } from './service/api';
 
 export default function App() {
   // --- Estados da Aplicação (Os alunos implementarão aqui) ---
@@ -13,6 +14,20 @@ export default function App() {
 
 
   // --- Funções de Requisição e Efeitos (Os alunos implementarão aqui) ---
+
+  //Função de busca
+  const carregarMateriais = async () => {
+    try {
+      const data = await getMateriais();
+      setMateriais(data);
+    } catch (error) {
+      console.error('Erro ao carregar materiais:', error);
+      Alert.alert('Erro', 'Não foi possível carregar o inventário.');
+    }
+  };
+  useEffect(() => {
+    carregarMateriais();
+  }, []);
 
   // Função de cadastrar
   const cadastrarMaterial = () => {
