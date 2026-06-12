@@ -22,3 +22,29 @@ export default function ListaMateriais({ materiais }) {
     />
   );
 }
+const styles = StyleSheet.create({
+  item: {
+    backgroundColor: '#fff',
+    borderRadius: 6,
+    padding: 12,
+    marginBottom: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    elevation: 1,
+  },
+  itemNome: {
+    fontSize: 14,
+    fontWeight: '500',
+  },
+  itemQuantidade: {
+    fontSize: 14,
+    color: '#0066cc',
+    fontWeight: '600',
+  },
+  emptyText: {
+    textAlign: 'center',
+    color: '#999',
+    marginTop: 20,
+  },
+});
