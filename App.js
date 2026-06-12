@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, ActivityIndicator, Alert } from 'react-native';
 import Formulario from './componentes/Formulario';
 import ListaMateriais from './componentes/ListaMateriais';
-import { getMateriais } from './service/api';
+import { getMateriais, criarMaterial } from './service/api';
 
 export default function App() {
   // --- Estados da Aplicação (Os alunos implementarão aqui) ---
@@ -30,8 +30,24 @@ export default function App() {
   }, []);
 
   // Função de cadastrar
-  const cadastrarMaterial = () => {
-    console.log('Cadastrar');
+  const cadastrarMaterial = async () => {
+    if (!nome.trim() || !quantidade.trim()) {
+      Alert.alert('Atenção', 'Preencha o nome e a quantidade.');
+      return;
+    }
+
+    try {
+      setEnviando(true);
+      await criarMaterial({ nome, quantidade: Number(quantidade) });
+      setNome('');
+      setQuantidade('');
+      await carregarMateriais();
+    } catch (error) {
+      console.error('Erro ao cadastrar material:', error);
+      Alert.alert('Erro', 'Não foi possível cadastrar o material.');
+    } finally {
+      setEnviando(false);
+    }
   };
 
   return (
